@@ -1,6 +1,5 @@
-
   logo:
-  - text: Tad Swider Docs
+    text: TAD SWIDER DOCS
     type: link
     path: index.html
 
@@ -24,7 +23,7 @@
         path: code/python/class.html
       - text: Lists
         type: link
-        path: code/python/list.html  
+        path: code/python/list.html
   - text: Bash Scripting
     type: link
     path: code/bash.html

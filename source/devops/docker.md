@@ -13,26 +13,8 @@ docker info
 * Create network that other container will attach to and will be visible via name: ``docker network create -d bridge my-net`` (``-d`` Network Driver: bridge)
 * Attach container to custom network: ``docker run --network my-net ...``
 
-**Socket**  
+**Socket**
 Docker socket from within a container: ``-v /run/docker.sock:/run/docker.sock``
-
-
-**Manage Docker as a non-root user**
-The docker daemon binds to a Unix socket instead of a TCP port. By default that Unix socket is owned by the user root and other users can only access it using sudo. The docker daemon always runs as the root user.
-
-If you don’t want to use sudo when you use the docker command, create a Unix group called docker and add users to it. When the docker daemon starts, it makes the ownership of the Unix socket read/writable by the docker group.
-
-* Add the docker group if it doesn't already exist:
-```bash
-sudo groupadd docker
-```
-* Add the connected user "$USER" to the docker group. Change the user name to match your preferred user if you do not want to use your current user:
-```bash
-sudo gpasswd -a $USER docker
-```
-* Log out/in to activate the changes to groups.
-
-* You can use ``docker run hello-world`` to check if you can run docker without sudo.
 
 ## Dockerfile
 Better way of installing things when building docker images:

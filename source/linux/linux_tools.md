@@ -21,6 +21,7 @@ Grep output of a curl command:
 ```bash
 curl -vs google.com 2>&1 | grep pattern
 ```
+**For simple download of a file use ``wget <URL>``**
 
 ## AWK
 Three ‘blocks’ of instructions are used in awk:
@@ -136,4 +137,30 @@ Simple copy
 find / -type f -size +20000 -print
 # find every file not accessed for the last week or more
 find / -type f -atime +7 -print
+```
+
+## DD
+**Syntax**
+```bash
+dd if=<source file name> of=<target file name> [Options]
+```
+
+**Write ISO to USB**
+1. Identify the name of the USB drive partition.
+
+2. Unmount all mounted partition from that device. This is very important, otherwise the written image might get corrupted. You can umount all mounted partitions from the device with ``umount /dev/sdX*``, where X is the appropriate letter, e.g. ``umount /dev/sdc1``
+
+3. Write the ISO file to the device:
+```bash
+# dd if=/path/to/image.iso of=/dev/sdX bs=8M status=progress oflag=direct
+```
+4. Wait until the command completes.
+_If you see dd: invalid status flag: 'progress', your dd version doesn’t support the status=progress option and you’ll need to remove it. In this case, you won’t see writing progress._
+
+**Backup/Restore with DD**
+```bash
+# Backing up a partition to a file(to my home directory as hdadisk.img)
+dd if =/dev/sda2 of=~/hdadisk.img
+# Restoring this image file in to other machine
+dd if=hdadisk.img of=/dev/sdb3
 ```

@@ -113,7 +113,7 @@ Each navigation item can have a special property called ``children``, that, as y
 ``source/_data/navigation.yaml example``
 ```bash
 logo:
-- text: My Documentation
+  text: My Documentation
   type: link
   path: index.html
 
