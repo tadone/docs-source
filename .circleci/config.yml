@@ -1,13 +1,17 @@
-version: 2
+version: 1
 jobs:
   build:
+    filters:
+      branches:
+        only: master
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: tadone.github.io
+      - GH_NAME: "Tad Swider"
+      - GH_EMAIL: "tadone@gmail.com"
     docker:
-      - image: debian:stretch
+      - image: circleci/node
     steps:
       - checkout
-      - run:
-          name: Greeting
-          command: echo Hello, world.
-      - run:
-          name: Print the Current Time
-          command: date
+      - run: yarn global add vuepress
+      - run: sh ./docs/deploy.sh
